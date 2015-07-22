@@ -1,0 +1,134 @@
+<?php
+/** @var Letsrock_PromoTabs_Block_Display $this */
+  $tabs = $this->getTabs();
+?>
+<div class="sliders-in-col clearfix">
+    <div class="sliders-in-col__left-w">
+        <div class="sliders-in-col__left">
+
+            <div class="promo-slider js-promo-slider">
+                <ul class="promo-slider__inner">
+                    <?php foreach($tabs as $tab) {?>
+                        <li>
+                            <div class="promo-slider__content promo-slider__content_<?php echo $tab->getType();?>">
+                                <div class="promo-slider__content__header clearfix">
+                                    <div class="promo-slider__content__title fleft"><?php echo $tab->getTitle();?></div>
+                                    <?php if($tab->getLink() && $tab->getLabelLink()){?>
+                                            <a href="<?php echo $tab->getLink()?>" class="fright"><?php echo $tab->getLabelLink()?> &raquo;</a>
+                                    <?php }?>
+                                </div>
+                                <?php
+                                switch ($tab->getType()) {
+                                    case "tab_text":?>
+                                            <div class="content_tab_text">
+                                                <?php echo $tab->getContent();?>
+                                            </div>
+                                       <?php
+                                        break;
+                                    case "tab_products":?>
+                                            <div class="promo-product-w">
+                                                <?php foreach($this->getProducts($tab->getContent()) as $product) { ?>
+                                                    <?php
+                                                    Mage::helper('calculate')->isDiscounted($product);
+                                                    ?>
+                                                    <a href="<?php echo $product->getUrlKey().'.html' ?>" class="promo-product">
+                                                        <?php if($product->getData('recommended_price_old')) {?><div class="discount-flag">скидка</div><?php }?>
+                                                        <?php if($product->getData('archive')) {?><div class="archive-flag">Архивный товар</div><?php }?>
+                                                        <div class="promo-product__image-w">
+                                                            <img class="promo-product__image promo-product__image_max-height" src="<?php  echo $this->helper('catalog/image')->init($product, 'small_image')->resize(210)->setQuality(100); ?>"
+                                                                 alt=""/>
+                                                        </div>
+                                                        <div class="promo-product__title-w promo-product__title-w_hidden-1-col promo-product__title-w_hidden-2-col">
+                                                            <div class="promo-product__title"><?php echo $product->getName() ?></div>
+                                                        </div>
+                                                        <div class="promo-product__price">
+                                                            <?php if($product->getData('recommended_price_old')) {?>
+                                                                <span class="catalog_oldprice"><?php echo number_format($product->getData('recommended_price_old'), 2, ',', ' ');?></span>
+                                                            <?php }?>
+                                                            <?php echo number_format($product->getData('recommended_price'), 2, ',', ' ');?>&nbsp;руб.
+                                                        </div>
+                                                    </a>
+                                                <?php } ?>
+                                            </div>
+                                        <?php
+                                        break;
+                                    case "tab_categories":?>
+                                        <div class="content_tab_categories">
+                                            <ul>
+                                            <?php foreach($this->getCategories($tab->getContent()) as $category) { ?>
+                                                   <li><a href="<?php echo $category->getUrlPath();?>"><?php echo $category->getName();?></a></li>
+                                            <?php }?>
+                                            </ul>
+                                        </div>
+                                        <?php
+                                        break;
+                                }
+                                ?>
+                            </div>
+                        </li>
+                    <?php } ?>
+
+                </ul>
+                <div class="promo-slider__controls">
+                    <?php foreach($tabs as $tab) {?>
+                        <div class="promo-slider__controls__item">
+                            <a class="promo-slider__controls__link" data-id="<?php echo $tab->getId();?>" href="#">
+                                <?php if($tab->getImage()!="") {?>
+                                     <img src="../media/<?php echo $tab->getImage();?>">
+                                <?php }?>
+                                <?php echo $tab->getTitle();?>
+                            </a>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <?php if (count($this->getItemForPromo())): ?>
+        <div class="sliders-in-col__right">
+            <div class="adaptive-slider adaptive-slider_vertical-in-one js-adaptive-slider-top">
+                <div class="discount-flag">Скидки</div>
+
+                <div class="adaptive-slider__pages-info">
+                    <span class="adaptive-slider__pages-info__pages"></span>
+                    <span class="delimeter"></span>
+                    <a href="#" class="adaptive-slider__pages-info__tobegin dotted">В начало</a>
+                </div>
+                <!--<ul class="adaptive-slider__inner"></ul>-->
+                <!-- сюда вставляются слайды из заготовки <div class="adaptive-slider__content"></div> -->
+                <div class="adaptive-slider__premade">
+                    <?php foreach ($this->getItemForPromo() as $discountProduct): ?>
+
+                        <a href="<?php echo Mage::getBaseUrl().$discountProduct->getData('url_path') ?>" class="promo-product promo-product_adaptive-slider promo-product1">
+                            <div class="promo-product__image-w">
+                                <img class="promo-product__image" src="<?php  echo $this->helper('catalog/image')->init($discountProduct, 'small_image')->resize(210)->setQuality(100); ?>"
+                                     alt=""/>
+                            </div>
+                            <div class="promo-product__title-w promo-product__title-w_hidden-1-col promo-product__title-w_hidden-2-col">
+                                <div class="promo-product__title"><?php echo $discountProduct->getName() ?></div>
+                            </div>
+                            <div class="promo-product__price">
+                                <div class="promo-product__price__oldprice"><?php echo $discountProduct->getOldPrice() ?><!--<span class="rouble">a</span>-->&nbsp;руб.</div>
+                                <div class="promo-product__price__price"><?php echo $discountProduct->getPriceLow() ?><!--<span class="rouble">a</span>-->&nbsp;руб.</div>
+                            </div>
+                            <div class="promo-product__additional">при тираже&nbsp;<?php echo $discountProduct->getPromoCount() ?> шт.</div>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    <?php endif;?>
+
+</div>
+    <script>
+        jQuery(function() {
+            //выбираем какой слайд показывать в слайдере на главной странице по дефолту, задается из админки
+            var slideId = '<?php echo $this->getActiveTab();?>';
+            var slideIndex = promoSlider.elements.controls().filter('[data-id=' + slideId + ']').parent().index();
+            window.promoSlider.init( slideIndex);
+        });
+    </script>
+
