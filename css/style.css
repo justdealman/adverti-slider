@@ -403,22 +403,22 @@ button::-moz-focus-inner {
 	border-bottom:1px solid transparent;
 }
 
-@media screen and (max-width: 1900px) {
+@media screen and (max-width: 1830px) {
 	.adv-slider .core .tab .products .jcarousel-container .jcarousel-clip, .adv-slider .core .tab .listing .jcarousel-container .jcarousel-clip {
 		width:1500px;
 	}
 }
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1530px) {
 	.adv-slider .core .tab .products .jcarousel-container .jcarousel-clip, .adv-slider .core .tab .listing .jcarousel-container .jcarousel-clip {
 		width:1200px;
 	}
 }
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1230px) {
 	.adv-slider .core .tab .products .jcarousel-container .jcarousel-clip, .adv-slider .core .tab .listing .jcarousel-container .jcarousel-clip {
 		width:900px;
 	}
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 930px) {
 	.adv-slider .core .tab .products .jcarousel-container .jcarousel-clip, .adv-slider .core .tab .listing .jcarousel-container .jcarousel-clip {
 		width:600px;
 	}
