@@ -136,5 +136,33 @@
 		});
     });
 	
+	function advAdaptive() {
+		if ( $('.adv-slider').width() < 640 ) {
+			var w = 300;
+		}
+		if ( $('.adv-slider').width() >= 930 && $('.adv-slider').width() < 1230 ) {
+			var w = 600;
+		}
+		if ( $('.adv-slider').width() >= 1230 && $('.adv-slider').width() < 1530 ) {
+			var w = 900;
+		}
+		if ( $('.adv-slider').width() >= 1530 && $('.adv-slider').width() < 1830 ) {
+			var w = 1200;
+		}
+		if ( $('.adv-slider').width() >= 1830 ) {
+			var w = 1500;
+		}
+		$('.adv-slider .core .tab .products .jcarousel-container .jcarousel-clip, .adv-slider .core .tab .listing .jcarousel-container .jcarousel-clip').width(w);
+	}
+
+    $(function() {
+		if ( $('.adv-slider').length > 0 ) {
+			advAdaptive();
+		}
+		$(window).resize(function() {
+			advAdaptive();
+		});
+    });
+	
 
 })(jQuery);

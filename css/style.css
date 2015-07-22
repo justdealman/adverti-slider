@@ -402,7 +402,7 @@ button::-moz-focus-inner {
 	color:#ed731c;
 	border-bottom:1px solid transparent;
 }
-
+/*
 @media screen and (max-width: 1830px) {
 	.adv-slider .core .tab .products .jcarousel-container .jcarousel-clip, .adv-slider .core .tab .listing .jcarousel-container .jcarousel-clip {
 		width:1500px;
@@ -427,7 +427,7 @@ button::-moz-focus-inner {
 	.adv-slider .core .tab .products .jcarousel-container .jcarousel-clip, .adv-slider .core .tab .listing .jcarousel-container .jcarousel-clip {
 		width:300px;
 	}
-}
+}*/
 @media screen and (max-width: 480px) {
 	.adv-slider {
 		display:none;
