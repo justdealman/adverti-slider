@@ -214,7 +214,7 @@ button::-moz-focus-inner {
 }
 .adv-slider .core .tab .products, .adv-slider .core .tab .listing {
 	position:relative;
-	margin:-6px 0 0;
+	margin:-6px auto 0;
 }
 .adv-slider .core .tab .listing {
 	margin-top:-10px;

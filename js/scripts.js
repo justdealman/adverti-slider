@@ -152,7 +152,7 @@
 		if ( $('.adv-slider').width() >= 1830 ) {
 			var w = 1500;
 		}
-		$('.adv-slider .core .tab .products .jcarousel-container .jcarousel-clip, .adv-slider .core .tab .listing .jcarousel-container .jcarousel-clip').width(w);
+		$('.adv-slider .core .tab .products, .adv-slider .core .tab .products .jcarousel-container, .adv-slider .core .tab .products .jcarousel-container .jcarousel-clip, .adv-slider .core .tab .listing .jcarousel-container .jcarousel-clip').width(w);
 	}
 
     $(function() {
